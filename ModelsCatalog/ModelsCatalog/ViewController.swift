@@ -1,15 +1,28 @@
 import UIKit
 import NimbusModels
 
-class TitleCell: UITableViewCell {
+class TitleCell: UITableViewCell, TableCell {
+    
+    //MARK: - TableCell Protocol
+    func updateCellWithObject(object: TableCellObject) {
+        if object is TitleEntity {
+            let cellObject = object as! TitleEntity
+            self.textLabel?.text = cellObject.title
+        }
+    }
 }
 
-class TitleEntity {
+class TitleEntity: TableCellObject {
   var title: String
 
   init(_ title: String) {
     self.title = title
   }
+    
+    //MARK: - TableCellObject Protocol
+    func tableCellClass() -> UITableViewCell.Type {
+        return TitleCell.self
+    }
 }
 
 class ViewController: UITableViewController {

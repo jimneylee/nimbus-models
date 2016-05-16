@@ -54,6 +54,10 @@ public final class TableModel<Element>: NSObject, UITableViewDataSource {
     //       cell classes in table/collection views.
     //   [ ] Needs to have some facility for global registration. Do not want every table/collection
     //       view to have to explicitly register the logic.
+    if let aCell = cell as? TableCell {
+        let cellObject = (self.sections[indexPath.section].elements[indexPath.row] as? TableCellObject)!
+        aCell.updateCellWithObject(cellObject)
+    }
     return cell
   }
 
